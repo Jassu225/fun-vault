@@ -1,0 +1,35 @@
+@import 'tailwindcss';
+
+/* Cyberpunk theme customizations */
+@layer theme {
+  :root {
+    --color-cyber-blue: #0080ff;
+    --color-cyber-purple: #b3b3ff;
+    --color-cyber-dark: #0d1117;
+    --color-cyber-darker: #161b22;
+    --color-cyber-gray: #21262d;
+  }
+}
+
+@layer utilities {
+  .bg-gradient-cyber {
+    background: linear-gradient(135deg, var(--color-cyber-blue), var(--color-cyber-purple));
+  }
+  
+  .text-glow {
+    text-shadow: 0 0 10px currentColor;
+  }
+  
+  .animate-gradient-shift {
+    animation: gradientShift 3s ease-in-out infinite;
+  }
+  
+  .animate-pulse-glow {
+    animation: pulse 2s ease-in-out infinite;
+  }
+}
+
+@keyframes gradientShift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+} 
