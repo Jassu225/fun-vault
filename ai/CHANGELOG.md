@@ -1,5 +1,16 @@
 # Fun-Vault Development Changelog
 
+[2025-07-21T11:37:22Z] - Implemented a unit test to verify Firestore security rules for the games collection (read allowed, write denied) using the emulator. [jaswanthsaisattenapalli@gmail.com]
+[2025-07-21T11:32:30Z] - Added Firebase app cleanup (deleteApp) in Jest Firestore emulator tests to resolve open handles warning. [jaswanthsaisattenapalli@gmail.com]
+[2025-07-21T10:48:00Z] - Re-initialized Firestore and fetched security rules via Firebase CLI (firestore.rules, firestore.indexes.json). [jaswanthsaisattenapalli@gmail.com]
+[2025-07-21T10:36:30Z] - Added jest.config.js for server-only Firestore integration testing, per /ai/plans/20250721_103430_plan.md. [jaswanthsaisattenapalli@gmail.com]
+[2025-07-21T10:25:37Z] - Updated Firestore service (src/services/firebase.ts) to support local emulator via NEXT_PUBLIC_USE_FIRESTORE_EMULATOR. Added npm scripts for emulator and test runs in package.json. [jaswanthsaisattenapalli@gmail.com]
+[2025-07-21T08:50:55Z] - Updated Firestore Emulator integration plan to use local firebase-tools installation in ai/plans/20250721_084927_plan.md. [jaswanthsaisattenapalli@gmail.com]
+[2025-07-21T08:49:27Z] - Created execution plan for Firestore Emulator integration for testing (Task 17.4), saved as /ai/plans/20250721_084927_plan.md. [jaswanthsaisattenapalli@gmail.com]
+[2025-07-21T08:32:43Z] - Documented Firestore security rule for the games collection in ai/specs/database/games_firestore_rules.md. [jaswanthsaisattenapalli@gmail.com]
+[2025-07-21T07:53:31Z] - Created Firestore service module (src/services/firebase.ts) with modular, singleton-safe initialization for Task 17.1. [jaswanthsaisattenapalli@gmail.com]
+[2025-07-21T07:47:46Z] - Created execution plan for Firebase SDK installation and service module setup (Task 17.1), saved as /ai/plans/20250721_074710_plan.md. [jaswanthsaisattenapalli@gmail.com]
+[2025-07-21T07:21:45Z] - Created execution plan for Task 16 (Project Scaffolding and Core Architecture Setup) and saved as /ai/plans/20250721_071956_plan.md. [jaswanthsaisattenapalli@gmail.com]
 [2025-07-21T06:54:23Z] - Parsed PRD using Taskmaster with Gemini 2.5 Pro model, generated fresh tasks in main tag. [jaswanthsaisattenapalli@gmail.com]
 [2025-07-21T06:27:14Z] - Reorganized types: moved all types to src/types with separate database.ts file for DB types. [jaswanthsaisattenapalli@gmail.com]
 [2025-07-21T06:36:14Z] - Attempted to change Taskmaster default tag from "master" to "main" - "main" is reserved and "master" cannot be renamed. [jaswanthsaisattenapalli@gmail.com]

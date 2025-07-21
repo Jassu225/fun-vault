@@ -1,0 +1,11 @@
+# Task ID: 22
+# Title: Implement End-to-End Gameplay for Tic-Tac-Toe
+# Status: pending
+# Dependencies: 21
+# Priority: medium
+# Description: Implement the complete gameplay loop for Tic-Tac-Toe, integrating the UI, state management, and AI opponent.
+# Details:
+Create the specific UI for the Tic-Tac-Toe 3x3 grid. Wire the player's move to the state management system. After a player's move, trigger a fetch request to the `/api/ai/move` endpoint. Upon receiving the AI's move, update the game state. Implement the win/loss/draw detection logic to be checked after every move.
+
+# Test Strategy:
+Conduct end-to-end manual testing by playing multiple full games. Write automated tests to cover all winning scenarios for both the player and AI, as well as the draw condition. Verify game state is correctly reset for a new game.

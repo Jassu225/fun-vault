@@ -1,0 +1,11 @@
+# Task ID: 21
+# Title: Integrate Hugging Face Inference API for AI Opponents
+# Status: pending
+# Dependencies: 20
+# Priority: high
+# Description: Create a secure Next.js API route to act as a proxy between the game client and the Hugging Face Inference API, enabling AI-powered gameplay.
+# Details:
+Develop an API route (e.g., `/api/ai/move`) that accepts the current game state from the client. This server-side route will make a secure request to the Hugging Face Inference API, passing the game state to the appropriate custom-trained model. The Hugging Face API key must be stored securely as a server-side environment variable. Implement error handling and a fallback mechanism for API failures.
+
+# Test Strategy:
+Write integration tests for the API route that mock the Hugging Face API to test for successful responses, error responses, and timeouts. Ensure the API key is not exposed to the client. The AI response time should be benchmarked to stay under the 500ms target.

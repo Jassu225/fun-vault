@@ -1,0 +1,11 @@
+# Task ID: 24
+# Title: Develop Anonymous Statistics Tracking and Display
+# Status: pending
+# Dependencies: 17, 18, 22
+# Priority: medium
+# Description: Implement the backend logic to track game statistics anonymously and create a simple UI to display global platform metrics.
+# Details:
+Create a new API route (e.g., `/api/stats/record`) that is called when a game concludes. This route will receive the game result and the anonymous user ID. It will then perform atomic updates in Firestore to the `gameSessions`, `anonymousUsers`, `gameStatistics`, and `globalStatistics` collections. Create a component on the homepage to display data from the `globalStatistics` document.
+
+# Test Strategy:
+After completing a game, use browser developer tools to verify the `record` API call is made with the correct payload. Check Firestore to confirm that all relevant documents and collections are updated accurately. Test the UI component to ensure it displays the correct global stats.

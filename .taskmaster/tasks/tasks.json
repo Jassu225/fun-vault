@@ -9,8 +9,36 @@
         "testStrategy": "Verify the Next.js application runs locally (`npm run dev`) and deploys successfully to a Vercel preview environment. Confirm that custom Tailwind CSS theme colors and utility classes are correctly applied to a basic placeholder page. The CI/CD pipeline on Vercel should trigger on git push.",
         "priority": "high",
         "dependencies": [],
-        "status": "pending",
-        "subtasks": []
+        "status": "done",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Verify Next.js & Tailwind CSS Setup",
+            "description": "Run the app locally and confirm Tailwind CSS is working and the theme matches the cyberpunk design on a placeholder page.",
+            "details": "",
+            "status": "done",
+            "dependencies": [],
+            "parentTaskId": 16
+          },
+          {
+            "id": 2,
+            "title": "Review and Organize Directory Structure",
+            "description": "Ensure /components, /app, /lib, /styles directories exist and are organized as per project standards.",
+            "details": "",
+            "status": "done",
+            "dependencies": [],
+            "parentTaskId": 16
+          },
+          {
+            "id": 3,
+            "title": "Set Up Vercel Project & CI/CD",
+            "description": "Link the repository to Vercel, confirm that pushes to the main branch trigger Vercel deployments, and ensure environment variables and secrets are configured as needed.",
+            "details": "",
+            "status": "done",
+            "dependencies": [],
+            "parentTaskId": 16
+          }
+        ]
       },
       {
         "id": 17,
@@ -23,7 +51,53 @@
           16
         ],
         "status": "pending",
-        "subtasks": []
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Install and Configure Firebase SDK",
+            "description": "Add Firebase and Firestore dependencies to the project. Set up Firebase configuration (env variables, app/services/firebase.ts). Initialize Firestore in the app using a service module.",
+            "details": "",
+            "status": "pending",
+            "dependencies": [],
+            "parentTaskId": 17
+          },
+          {
+            "id": 2,
+            "title": "Define Firestore Data Models",
+            "description": "Create TypeScript types/interfaces for all collections (e.g., users, games, scores) and document the schema in /src/types/database.ts.",
+            "details": "",
+            "status": "done",
+            "dependencies": [],
+            "parentTaskId": 17
+          },
+          {
+            "id": 3,
+            "title": "Implement Firestore Security Rules (Optional)",
+            "description": "Draft and document security rules for collections. Reference rules in the PRD or a markdown doc.",
+            "details": "",
+            "status": "pending",
+            "dependencies": [],
+            "parentTaskId": 17
+          },
+          {
+            "id": 4,
+            "title": "Test Firestore Connection",
+            "description": "Write a simple script or page to read/write a test document and confirm data is persisted and retrieved correctly.",
+            "details": "",
+            "status": "pending",
+            "dependencies": [],
+            "parentTaskId": 17
+          },
+          {
+            "id": 5,
+            "title": "Document Setup",
+            "description": "Add setup instructions to the README or a dedicated setup doc. List required environment variables and configuration steps.",
+            "details": "",
+            "status": "pending",
+            "dependencies": [],
+            "parentTaskId": 17
+          }
+        ]
       },
       {
         "id": 18,
@@ -136,7 +210,7 @@
     ],
     "metadata": {
       "created": "2025-01-21T05:36:00Z",
-      "updated": "2025-07-21T06:54:12.015Z",
+      "updated": "2025-07-21T07:56:20.553Z",
       "description": "Tasks for main context"
     }
   }

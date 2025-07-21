@@ -1,0 +1,11 @@
+# Task ID: 18
+# Title: Implement Anonymous User Session Management
+# Status: pending
+# Dependencies: 16
+# Priority: high
+# Description: Develop a client-side mechanism to identify users anonymously across sessions using locally stored, uniquely generated IDs.
+# Details:
+Utilize the `nanoid` library to generate a unique client ID. Implement a React hook or client-side utility that checks for this ID in `localStorage` on application load. If it doesn't exist, generate a new one and store it. This ID must be included in all relevant API requests to track user-specific actions and statistics.
+
+# Test Strategy:
+On first visit, confirm a unique ID is generated and saved in `localStorage`. On subsequent page reloads and visits, verify the same ID is retrieved and used. Test that clearing `localStorage` results in the generation of a new ID.

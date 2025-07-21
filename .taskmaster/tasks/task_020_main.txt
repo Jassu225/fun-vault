@@ -1,0 +1,11 @@
+# Task ID: 20
+# Title: Create Dynamic Game Pages and Client-Side State Management
+# Status: pending
+# Dependencies: 19
+# Priority: high
+# Description: Develop dynamic pages for individual games and implement robust client-side state management for the game board and overall game status.
+# Details:
+Use Next.js dynamic routing (e.g., `/games/[gameId]`) to create pages for each game. Implement a generic game state management system using React's `useReducer` hook to handle the game board, current turn, and game status (in-progress, win, lose, draw). This structure should be reusable for all classic games.
+
+# Test Strategy:
+Unit test the `useReducer` logic for state transitions (e.g., making a move, changing turns, setting a winner). Verify that navigating to a specific game's URL (e.g., `/games/tic-tac-toe`) correctly loads the corresponding game interface and initial state.

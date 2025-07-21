@@ -1,0 +1,31 @@
+# Task ID: 16
+# Title: Project Scaffolding and Core Architecture Setup
+# Status: done
+# Dependencies: None
+# Priority: high
+# Description: Initialize the Next.js 15 project with TypeScript, configure Tailwind CSS with the specified cyberpunk theme, and establish the foundational project structure for a scalable and maintainable application.
+# Details:
+Use `create-next-app` to scaffold a new Next.js 15 project with TypeScript. Configure `tailwind.config.js` to include a custom theme with dark backgrounds, neon text, and accent colors as per the design principles. Set up a Vercel project linked to the Git repository for automated CI/CD. Establish a directory structure for `/components`, `/app` (with API routes), `/lib` (for utilities), and `/styles`.
+
+# Test Strategy:
+Verify the Next.js application runs locally (`npm run dev`) and deploys successfully to a Vercel preview environment. Confirm that custom Tailwind CSS theme colors and utility classes are correctly applied to a basic placeholder page. The CI/CD pipeline on Vercel should trigger on git push.
+
+# Subtasks:
+## 1. Verify Next.js & Tailwind CSS Setup [done]
+### Dependencies: None
+### Description: Run the app locally and confirm Tailwind CSS is working and the theme matches the cyberpunk design on a placeholder page.
+### Details:
+
+
+## 2. Review and Organize Directory Structure [done]
+### Dependencies: None
+### Description: Ensure /components, /app, /lib, /styles directories exist and are organized as per project standards.
+### Details:
+
+
+## 3. Set Up Vercel Project & CI/CD [done]
+### Dependencies: None
+### Description: Link the repository to Vercel, confirm that pushes to the main branch trigger Vercel deployments, and ensure environment variables and secrets are configured as needed.
+### Details:
+
+

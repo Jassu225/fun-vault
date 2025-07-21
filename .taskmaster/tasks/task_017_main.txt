@@ -1,0 +1,43 @@
+# Task ID: 17
+# Title: Firestore Database Setup and Data Modeling
+# Status: pending
+# Dependencies: 16
+# Priority: high
+# Description: Configure Firestore integration within the Next.js application and implement the data schemas for all required collections as outlined in the PRD's Data Architecture section.
+# Details:
+Create a new Google Cloud project with a Firestore database. Set up the Firebase Admin SDK for secure server-side access within Next.js API routes, storing credentials as environment variables. Define and create scripts to initialize the collections: `games` (for metadata), `gameSessions`, `anonymousUsers`, `gameStatistics`, and the `globalStatistics` document.
+
+# Test Strategy:
+Write unit tests for database helper functions (e.g., `createGameSession`, `updateUserStats`). Manually verify via the Firebase Console that API routes can successfully write and read data to the respective collections according to the defined schema.
+
+# Subtasks:
+## 1. Install and Configure Firebase SDK [pending]
+### Dependencies: None
+### Description: Add Firebase and Firestore dependencies to the project. Set up Firebase configuration (env variables, app/services/firebase.ts). Initialize Firestore in the app using a service module.
+### Details:
+
+
+## 2. Define Firestore Data Models [pending]
+### Dependencies: None
+### Description: Create TypeScript types/interfaces for all collections (e.g., users, games, scores) and document the schema in /src/types/database.ts.
+### Details:
+
+
+## 3. Implement Firestore Security Rules (Optional) [pending]
+### Dependencies: None
+### Description: Draft and document security rules for collections. Reference rules in the PRD or a markdown doc.
+### Details:
+
+
+## 4. Test Firestore Connection [pending]
+### Dependencies: None
+### Description: Write a simple script or page to read/write a test document and confirm data is persisted and retrieved correctly.
+### Details:
+
+
+## 5. Document Setup [pending]
+### Dependencies: None
+### Description: Add setup instructions to the README or a dedicated setup doc. List required environment variables and configuration steps.
+### Details:
+
+
