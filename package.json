@@ -34,5 +34,8 @@
     "cyberpunk"
   ],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "task-master-ai": "^0.21.0"
+  }
 }

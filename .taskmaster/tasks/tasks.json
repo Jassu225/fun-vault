@@ -2,229 +2,142 @@
   "main": {
     "tasks": [
       {
-        "id": 1,
-        "title": "Set up Firebase Configuration",
-        "description": "Configure Firebase project and Firestore database for the Fun-Vault application",
-        "status": "pending",
+        "id": 16,
+        "title": "Project Scaffolding and Core Architecture Setup",
+        "description": "Initialize the Next.js 15 project with TypeScript, configure Tailwind CSS with the specified cyberpunk theme, and establish the foundational project structure for a scalable and maintainable application.",
+        "details": "Use `create-next-app` to scaffold a new Next.js 15 project with TypeScript. Configure `tailwind.config.js` to include a custom theme with dark backgrounds, neon text, and accent colors as per the design principles. Set up a Vercel project linked to the Git repository for automated CI/CD. Establish a directory structure for `/components`, `/app` (with API routes), `/lib` (for utilities), and `/styles`.",
+        "testStrategy": "Verify the Next.js application runs locally (`npm run dev`) and deploys successfully to a Vercel preview environment. Confirm that custom Tailwind CSS theme colors and utility classes are correctly applied to a basic placeholder page. The CI/CD pipeline on Vercel should trigger on git push.",
         "priority": "high",
         "dependencies": [],
-        "details": "Set up Firebase project, configure Firestore collections, and create environment variables for Firebase configuration. This includes setting up the database structure for games, game sessions, anonymous users, and statistics collections.",
-        "testStrategy": "Verify Firebase connection by writing and reading test data to all collections",
+        "status": "pending",
         "subtasks": []
       },
       {
-        "id": 2,
-        "title": "Implement Game Catalog Page",
-        "description": "Create the main catalog page displaying all available games with cyberpunk styling",
-        "status": "pending",
+        "id": 17,
+        "title": "Firestore Database Setup and Data Modeling",
+        "description": "Configure Firestore integration within the Next.js application and implement the data schemas for all required collections as outlined in the PRD's Data Architecture section.",
+        "details": "Create a new Google Cloud project with a Firestore database. Set up the Firebase Admin SDK for secure server-side access within Next.js API routes, storing credentials as environment variables. Define and create scripts to initialize the collections: `games` (for metadata), `gameSessions`, `anonymousUsers`, `gameStatistics`, and the `globalStatistics` document.",
+        "testStrategy": "Write unit tests for database helper functions (e.g., `createGameSession`, `updateUserStats`). Manually verify via the Firebase Console that API routes can successfully write and read data to the respective collections according to the defined schema.",
         "priority": "high",
         "dependencies": [
-          1
+          16
         ],
-        "details": "Build the home page with game cards, search functionality, and responsive grid layout. Include game descriptions, icons, and statistics. Use the cyberpunk theme with neon colors and animations.",
-        "testStrategy": "Test responsive design on multiple devices, verify all game cards display correctly, and test search functionality",
+        "status": "pending",
         "subtasks": []
       },
       {
-        "id": 3,
-        "title": "Create Game Data Structure",
-        "description": "Set up the initial game data in Firestore with all 6 classic games",
-        "status": "pending",
+        "id": 18,
+        "title": "Implement Anonymous User Session Management",
+        "description": "Develop a client-side mechanism to identify users anonymously across sessions using locally stored, uniquely generated IDs.",
+        "details": "Utilize the `nanoid` library to generate a unique client ID. Implement a React hook or client-side utility that checks for this ID in `localStorage` on application load. If it doesn't exist, generate a new one and store it. This ID must be included in all relevant API requests to track user-specific actions and statistics.",
+        "testStrategy": "On first visit, confirm a unique ID is generated and saved in `localStorage`. On subsequent page reloads and visits, verify the same ID is retrieved and used. Test that clearing `localStorage` results in the generation of a new ID.",
         "priority": "high",
         "dependencies": [
-          1
+          16
         ],
-        "details": "Create game documents in Firestore for Tic-Tac-Toe, Connect 4, Checkers, Dots & Boxes, Reversi, and Battleship. Include proper metadata, descriptions, and category classifications.",
-        "testStrategy": "Verify all games are properly stored in Firestore and can be retrieved by the application",
+        "status": "pending",
         "subtasks": []
       },
       {
-        "id": 4,
-        "title": "Implement Anonymous User Management",
-        "description": "Set up client-side anonymous user ID generation and tracking",
-        "status": "pending",
-        "priority": "medium",
-        "dependencies": [
-          1
-        ],
-        "details": "Implement nanoid for client-side user ID generation. Create functions to track anonymous users in Firestore and update their game counts. Handle session persistence.",
-        "testStrategy": "Test user ID generation, verify Firestore updates, and test session persistence across browser refreshes",
-        "subtasks": []
-      },
-      {
-        "id": 5,
-        "title": "Set up Hugging Face AI Integration",
-        "description": "Configure Hugging Face Inference API for AI opponents",
-        "status": "pending",
+        "id": 19,
+        "title": "Develop Game Catalog Page UI",
+        "description": "Build the main landing page that displays the catalog of available games in a responsive, cyberpunk-themed grid layout.",
+        "details": "Create a server component in Next.js for the homepage that fetches game metadata from the `games` collection in Firestore. For each game, render a 'Game Card' component displaying its name, description, and any available stats. The layout must be fully responsive, adapting from a multi-column grid on desktops to a single column on mobile devices using Tailwind CSS.",
+        "testStrategy": "Component tests for the 'Game Card'. End-to-end tests to ensure the page correctly fetches and displays data from Firestore. Manually test the page's responsiveness across various screen sizes (e.g., 360px, 768px, 1024px, 1440px).",
         "priority": "high",
         "dependencies": [
-          1
+          17
         ],
-        "details": "Set up Hugging Face API configuration, create API routes for AI inference, and implement basic AI response handling. Configure environment variables for API access.",
-        "testStrategy": "Test AI API responses and verify proper error handling for failed requests",
+        "status": "pending",
         "subtasks": []
       },
       {
-        "id": 6,
-        "title": "Implement Tic-Tac-Toe Game",
-        "description": "Create the Tic-Tac-Toe game with AI opponent and Firestore integration",
-        "status": "pending",
+        "id": 20,
+        "title": "Create Dynamic Game Pages and Client-Side State Management",
+        "description": "Develop dynamic pages for individual games and implement robust client-side state management for the game board and overall game status.",
+        "details": "Use Next.js dynamic routing (e.g., `/games/[gameId]`) to create pages for each game. Implement a generic game state management system using React's `useReducer` hook to handle the game board, current turn, and game status (in-progress, win, lose, draw). This structure should be reusable for all classic games.",
+        "testStrategy": "Unit test the `useReducer` logic for state transitions (e.g., making a move, changing turns, setting a winner). Verify that navigating to a specific game's URL (e.g., `/games/tic-tac-toe`) correctly loads the corresponding game interface and initial state.",
         "priority": "high",
         "dependencies": [
-          2,
-          3,
-          4,
-          5
+          19
         ],
-        "details": "Build complete Tic-Tac-Toe game with responsive board, AI opponent integration, game state management, and Firestore session tracking. Include win/lose/draw detection.",
-        "testStrategy": "Test all game scenarios including wins, losses, draws, and AI moves. Verify Firestore session creation and completion.",
+        "status": "pending",
         "subtasks": []
       },
       {
-        "id": 7,
-        "title": "Implement Connect 4 Game",
-        "description": "Create the Connect 4 game with AI opponent and Firestore integration",
-        "status": "pending",
+        "id": 21,
+        "title": "Integrate Hugging Face Inference API for AI Opponents",
+        "description": "Create a secure Next.js API route to act as a proxy between the game client and the Hugging Face Inference API, enabling AI-powered gameplay.",
+        "details": "Develop an API route (e.g., `/api/ai/move`) that accepts the current game state from the client. This server-side route will make a secure request to the Hugging Face Inference API, passing the game state to the appropriate custom-trained model. The Hugging Face API key must be stored securely as a server-side environment variable. Implement error handling and a fallback mechanism for API failures.",
+        "testStrategy": "Write integration tests for the API route that mock the Hugging Face API to test for successful responses, error responses, and timeouts. Ensure the API key is not exposed to the client. The AI response time should be benchmarked to stay under the 500ms target.",
         "priority": "high",
         "dependencies": [
-          2,
-          3,
-          4,
-          5
+          20
         ],
-        "details": "Build Connect 4 game with responsive board, AI opponent integration, game state management, and Firestore session tracking. Include win detection and column validation.",
-        "testStrategy": "Test all game scenarios including wins, losses, draws, and AI moves. Verify column validation and win detection logic.",
+        "status": "pending",
         "subtasks": []
       },
       {
-        "id": 8,
-        "title": "Implement Checkers Game",
-        "description": "Create the Checkers game with AI opponent and Firestore integration",
-        "status": "pending",
+        "id": 22,
+        "title": "Implement End-to-End Gameplay for Tic-Tac-Toe",
+        "description": "Implement the complete gameplay loop for Tic-Tac-Toe, integrating the UI, state management, and AI opponent.",
+        "details": "Create the specific UI for the Tic-Tac-Toe 3x3 grid. Wire the player's move to the state management system. After a player's move, trigger a fetch request to the `/api/ai/move` endpoint. Upon receiving the AI's move, update the game state. Implement the win/loss/draw detection logic to be checked after every move.",
+        "testStrategy": "Conduct end-to-end manual testing by playing multiple full games. Write automated tests to cover all winning scenarios for both the player and AI, as well as the draw condition. Verify game state is correctly reset for a new game.",
         "priority": "medium",
         "dependencies": [
-          2,
-          3,
-          4,
-          5
+          21
         ],
-        "details": "Build Checkers game with responsive board, AI opponent integration, game state management, and Firestore session tracking. Include move validation and king promotion.",
-        "testStrategy": "Test all game scenarios including valid moves, king promotion, and AI moves. Verify move validation logic.",
+        "status": "pending",
         "subtasks": []
       },
       {
-        "id": 9,
-        "title": "Implement Statistics Tracking",
-        "description": "Create comprehensive statistics tracking for games and global metrics",
-        "status": "pending",
+        "id": 23,
+        "title": "Implement Gameplay for Connect 4 and Checkers",
+        "description": "Expand the game library by building the specific game logic and UI components for Connect 4 and Checkers, integrating them with the existing systems.",
+        "details": "For each game, create a unique game board component and game-specific logic (e.g., gravity for Connect 4, piece movement/capture for Checkers). Reuse the core architecture for state management and AI integration. This task assumes the corresponding AI models are available on Hugging Face.",
+        "testStrategy": "Perform extensive manual gameplay testing for both games, checking for edge cases (e.g., a full board in Connect 4, kinging a piece in Checkers). Write unit tests for the specific win-condition logic of each game.",
         "priority": "medium",
         "dependencies": [
-          6,
-          7,
-          8
+          22
         ],
-        "details": "Implement real-time statistics tracking for individual games and global platform metrics. Update statistics on game completion and display them in the catalog.",
-        "testStrategy": "Verify statistics are updated correctly after games and display accurately in the UI",
+        "status": "pending",
         "subtasks": []
       },
       {
-        "id": 10,
-        "title": "Implement Dots & Boxes Game",
-        "description": "Create the Dots & Boxes game with AI opponent and Firestore integration",
-        "status": "pending",
+        "id": 24,
+        "title": "Develop Anonymous Statistics Tracking and Display",
+        "description": "Implement the backend logic to track game statistics anonymously and create a simple UI to display global platform metrics.",
+        "details": "Create a new API route (e.g., `/api/stats/record`) that is called when a game concludes. This route will receive the game result and the anonymous user ID. It will then perform atomic updates in Firestore to the `gameSessions`, `anonymousUsers`, `gameStatistics`, and `globalStatistics` collections. Create a component on the homepage to display data from the `globalStatistics` document.",
+        "testStrategy": "After completing a game, use browser developer tools to verify the `record` API call is made with the correct payload. Check Firestore to confirm that all relevant documents and collections are updated accurately. Test the UI component to ensure it displays the correct global stats.",
         "priority": "medium",
         "dependencies": [
-          2,
-          3,
-          4,
-          5
+          17,
+          18,
+          22
         ],
-        "details": "Build Dots & Boxes game with responsive board, AI opponent integration, game state management, and Firestore session tracking. Include line drawing and box completion detection.",
-        "testStrategy": "Test all game scenarios including line drawing, box completion, and AI moves. Verify scoring logic.",
+        "status": "pending",
         "subtasks": []
       },
       {
-        "id": 11,
-        "title": "Implement Reversi Game",
-        "description": "Create the Reversi game with AI opponent and Firestore integration",
-        "status": "pending",
+        "id": 25,
+        "title": "Finalize UI/UX, Responsiveness, and MVP Deployment",
+        "description": "Conduct a full review of the application to polish the UI/UX, add smooth animations, ensure full responsiveness, and prepare for production deployment on Vercel.",
+        "details": "Refine all Tailwind CSS styles to ensure a consistent and visually appealing cyberpunk aesthetic. Add subtle CSS transitions and animations for actions like card hovering and game piece movement. Perform thorough cross-browser (Chrome, Firefox, Safari) and cross-device (desktop, tablet, mobile) testing. Run a Lighthouse audit to check for performance and accessibility issues. Configure production environment variables in Vercel.",
+        "testStrategy": "Perform a full, end-to-end user journey test on multiple physical devices and browsers. Address any layout, styling, or functional bugs found. Aim for a Lighthouse score of 90+ in Performance and Accessibility. Confirm the production deployment on Vercel is stable and performant.",
         "priority": "medium",
         "dependencies": [
-          2,
-          3,
-          4,
-          5
+          19,
+          23,
+          24
         ],
-        "details": "Build Reversi game with responsive board, AI opponent integration, game state management, and Firestore session tracking. Include move validation and piece flipping logic.",
-        "testStrategy": "Test all game scenarios including valid moves, piece flipping, and AI moves. Verify move validation logic.",
-        "subtasks": []
-      },
-      {
-        "id": 12,
-        "title": "Implement Battleship Game",
-        "description": "Create the Battleship game with AI opponent and Firestore integration",
         "status": "pending",
-        "priority": "medium",
-        "dependencies": [
-          2,
-          3,
-          4,
-          5
-        ],
-        "details": "Build Battleship game with responsive board, AI opponent integration, game state management, and Firestore session tracking. Include ship placement and hit detection.",
-        "testStrategy": "Test all game scenarios including ship placement, hit detection, and AI moves. Verify ship placement validation.",
-        "subtasks": []
-      },
-      {
-        "id": 13,
-        "title": "Implement Search and Filter Functionality",
-        "description": "Add search and filter capabilities to the game catalog",
-        "status": "pending",
-        "priority": "low",
-        "dependencies": [
-          2
-        ],
-        "details": "Implement search functionality to find games by name and filter games by category (Strategy, Puzzle, Classic). Add responsive search interface with cyberpunk styling.",
-        "testStrategy": "Test search functionality with various inputs and verify filter options work correctly",
-        "subtasks": []
-      },
-      {
-        "id": 14,
-        "title": "Optimize Performance and Responsive Design",
-        "description": "Ensure optimal performance and responsive design across all devices",
-        "status": "pending",
-        "priority": "medium",
-        "dependencies": [
-          6,
-          7,
-          8,
-          9,
-          10,
-          11,
-          12
-        ],
-        "details": "Optimize page load times, implement lazy loading for game components, ensure responsive design works on all screen sizes, and add loading states for better UX.",
-        "testStrategy": "Test performance on various devices and screen sizes, verify loading times meet targets (< 2s page load)",
-        "subtasks": []
-      },
-      {
-        "id": 15,
-        "title": "Final Testing and Deployment Preparation",
-        "description": "Conduct comprehensive testing and prepare for deployment",
-        "status": "pending",
-        "priority": "high",
-        "dependencies": [
-          14
-        ],
-        "details": "Perform end-to-end testing of all features, fix any bugs, optimize bundle size, and prepare deployment configuration for Vercel. Ensure all success criteria are met.",
-        "testStrategy": "Conduct full regression testing, verify all success criteria, and test deployment process",
         "subtasks": []
       }
     ],
     "metadata": {
       "created": "2025-01-21T05:36:00Z",
-      "updated": "2025-01-21T05:36:00Z",
-      "description": "Master task list for Fun-Vault project development"
+      "updated": "2025-07-21T06:54:12.015Z",
+      "description": "Tasks for main context"
     }
   }
 }
