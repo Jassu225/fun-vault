@@ -1,15 +1,15 @@
-import type { Metadata } from 'next'
-import './globals.css'
+import type { Metadata } from "next";
+import "./globals.css";
 
 export const metadata: Metadata = {
-  title: 'Fun-Vault - Neon Gaming Hub',
-  description: 'A cyberpunk-themed digital arcade for classic strategy games',
-}
+  title: "Fun-Vault - Neon Gaming Hub",
+  description: "A cyberpunk-themed digital arcade for classic strategy games",
+};
 
 export default function RootLayout({
   children,
 }: {
-  children: React.ReactNode
+  children: React.ReactNode;
 }) {
   return (
     <html lang="en">
@@ -18,5 +18,5 @@ export default function RootLayout({
         {children}
       </body>
     </html>
-  )
-} 
+  );
+}
