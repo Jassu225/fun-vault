@@ -22,6 +22,20 @@ import {
   getDatabaseStats,
 } from './database';
 import { GameCategory, GameSessionStatus, PlayerType } from '../types';
+import { deleteApp } from 'firebase-admin/app';
+import { getFirebaseAdminApp } from './firebaseAdmin';
+
+// Add cleanup after all tests
+afterAll(async () => {
+  try {
+    await deleteApp(getFirebaseAdminApp());
+  } catch (error) {
+    // Ignore cleanup errors
+  }
+
+  // Wait for any pending operations
+  await new Promise((resolve) => setTimeout(resolve, 200));
+});
 
 describe('Database Service - Games Collection', () => {
   const testGame = {
@@ -67,7 +81,7 @@ describe('Database Service - Game Sessions Collection', () => {
     status: GameSessionStatus.STARTED,
     winner: PlayerType.PLAYER,
     startedAt: new Date().toISOString(),
-    endedAt: null as string | null,
+    endedAt: new Date().toISOString(), // Provide a proper ISO string
   };
 
   it('should create a game session', async () => {

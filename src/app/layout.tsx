@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import '@/styles/globals.css';
+import { AuthProvider } from '@/components/AuthProvider';
 
 export const metadata: Metadata = {
   title: 'Fun-Vault - Neon Gaming Hub',
@@ -11,7 +12,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en">
       <body>
         <div className="cyber-grid"></div>
-        {children}
+        <AuthProvider>{children}</AuthProvider>
       </body>
     </html>
   );

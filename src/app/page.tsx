@@ -1,8 +1,14 @@
+import { AuthStatus } from '@/components/AuthStatus';
+
 export default function Home() {
   return (
     <main className="min-h-screen bg-gradient-to-br from-cyber-dark via-cyber-darker to-cyber-gray text-cyber-purple font-mono">
       {/* Cyber Grid Background */}
       <div className="fixed inset-0 bg-[linear-gradient(rgba(179,179,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(179,179,255,0.03)_1px,transparent_1px)] bg-[length:50px_50px] pointer-events-none -z-10"></div>
+
+      {/* Auth Status for Testing */}
+      <AuthStatus />
+
       <div className="container mx-auto px-4 py-16">
         <div className="text-center">
           <h1 className="text-6xl font-bold bg-gradient-to-r from-cyber-blue via-cyber-purple to-cyber-blue bg-[length:200%_200%] bg-clip-text text-transparent animate-gradient-shift text-glow mb-8">

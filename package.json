@@ -4,7 +4,7 @@
   "description": "A cyberpunk-themed digital arcade for classic strategy games",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "dotenv -e .env.development -- next dev",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
@@ -12,7 +12,7 @@
     "test": "echo \"No tests yet. Use: npm run test:unit or npm run test:e2e\" && exit 0",
     "test:unit": "dotenv -e .env.test -- jest --detectOpenHandles",
     "test:e2e": "playwright test",
-    "emulators": "firebase emulators:start --only firestore"
+    "emulators": "firebase emulators:start --only firestore,auth"
   },
   "dependencies": {
     "@huggingface/inference": "^2.6.4",
@@ -54,6 +54,7 @@
     "globals": "^16.3.0",
     "husky": "^9.1.7",
     "jest": "^30.0.4",
+    "jest-environment-jsdom": "^30.0.5",
     "lint-staged": "^16.1.2",
     "prettier": "3.6.2",
     "task-master-ai": "^0.21.0",

@@ -206,3 +206,20 @@ export async function getDatabaseStats(): Promise<{
     totalGameStats: statsSnapshot.size,
   };
 }
+
+// Client-side helper function to create anonymous user with Firebase Auth UID
+export async function createAnonymousUserWithAuthUid(userId: string): Promise<DocumentReference> {
+  const userData: Omit<AnonymousUser, 'uid' | 'createdAt'> = {
+    gamesPlayed: 0,
+    lastActiveAt: new Date().toISOString(),
+  };
+
+  // Use the Firebase Auth UID as the document ID
+  const docRef = getDb().collection(COLLECTIONS.ANONYMOUS_USERS).doc(userId);
+  await docRef.set({
+    ...userData,
+    createdAt: new Date().toISOString(),
+  } as AnonymousUser);
+
+  return docRef;
+}
