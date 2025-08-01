@@ -2,10 +2,41 @@ rules_version = '2';
 
 service cloud.firestore {
   match /databases/{database}/documents {
-  	match /games/{gameId} {
+    // Games collection - read-only for all users, write-only by admin
+    match /games/{gameId} {
       allow read: if true;
-      allow write, update, delete: if false;
+      allow write, update, delete: if false; // Only admin can modify games
     }
+
+    // Game sessions - allow read/write for authenticated users
+    match /gameSessions/{sessionId} {
+      allow read: if request.auth != null; // Allow reading for authenticated users
+      allow create: if request.auth != null; // Allow creating for authenticated users
+      allow update: if request.auth != null; // Allow updating for authenticated users
+      allow delete: if false; // Don't allow deletion
+    }
+
+    // Anonymous users - allow read/write for the authenticated user
+    match /anonymousUsers/{userId} {
+      allow read: if request.auth != null && request.auth.uid == userId; // User can read their own data
+      allow create: if request.auth != null && request.auth.uid == userId; // User can create their own data
+      allow update: if request.auth != null && request.auth.uid == userId; // User can update their own data
+      allow delete: if false; // Don't allow deletion
+    }
+
+    // Game statistics - read-only for all, write-only by admin
+    match /gameStatistics/{statId} {
+      allow read: if true;
+      allow write, update, delete: if false; // Only admin can modify stats
+    }
+
+    // Global statistics - read-only for all, write-only by admin
+    match /globalStatistics/{docId} {
+      allow read: if true;
+      allow write, update, delete: if false; // Only admin can modify global stats
+    }
+
+    // Default rule - deny all other operations
     match /{document=**} {
       allow read, write: if false;
     }

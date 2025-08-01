@@ -50,14 +50,14 @@
         "dependencies": [
           16
         ],
-        "status": "pending",
+        "status": "done",
         "subtasks": [
           {
             "id": 1,
             "title": "Install and Configure Firebase SDK",
             "description": "Add Firebase and Firestore dependencies to the project. Set up Firebase configuration (env variables, app/services/firebase.ts). Initialize Firestore in the app using a service module.",
             "details": "",
-            "status": "pending",
+            "status": "done",
             "dependencies": [],
             "parentTaskId": 17
           },
@@ -75,7 +75,7 @@
             "title": "Implement Firestore Security Rules (Optional)",
             "description": "Draft and document security rules for collections. Reference rules in the PRD or a markdown doc.",
             "details": "",
-            "status": "pending",
+            "status": "done",
             "dependencies": [],
             "parentTaskId": 17
           },
@@ -84,7 +84,7 @@
             "title": "Test Firestore Connection",
             "description": "Write a simple script or page to read/write a test document and confirm data is persisted and retrieved correctly.",
             "details": "",
-            "status": "pending",
+            "status": "done",
             "dependencies": [],
             "parentTaskId": 17
           },
@@ -93,7 +93,7 @@
             "title": "Document Setup",
             "description": "Add setup instructions to the README or a dedicated setup doc. List required environment variables and configuration steps.",
             "details": "",
-            "status": "pending",
+            "status": "done",
             "dependencies": [],
             "parentTaskId": 17
           }
@@ -101,15 +101,15 @@
       },
       {
         "id": 18,
-        "title": "Implement Anonymous User Session Management",
-        "description": "Develop a client-side mechanism to identify users anonymously across sessions using locally stored, uniquely generated IDs.",
-        "details": "Utilize the `nanoid` library to generate a unique client ID. Implement a React hook or client-side utility that checks for this ID in `localStorage` on application load. If it doesn't exist, generate a new one and store it. This ID must be included in all relevant API requests to track user-specific actions and statistics.",
-        "testStrategy": "On first visit, confirm a unique ID is generated and saved in `localStorage`. On subsequent page reloads and visits, verify the same ID is retrieved and used. Test that clearing `localStorage` results in the generation of a new ID.",
-        "priority": "high",
+        "title": "Implement Anonymous User Session Management with Firebase",
+        "description": "Integrate Firebase Anonymous Authentication to manage anonymous user sessions, providing a secure, scalable, and persistent solution for tracking users.",
+        "status": "pending",
         "dependencies": [
           16
         ],
-        "status": "pending",
+        "priority": "high",
+        "details": "Following a critical architecture change, this task now involves integrating the Firebase Web SDK to handle anonymous user authentication. Implement a client-side utility or React hook that calls the `signInAnonymously` method from Firebase Authentication on application load. The resulting Firebase User UID will replace the previous custom ID solution. This UID must be used to identify the user in all relevant API requests, enabling seamless account upgrades and leveraging Firebase's built-in session management.",
+        "testStrategy": "On first visit, verify that the application successfully calls `signInAnonymously` and a Firebase user session is created. On subsequent visits, confirm that the existing anonymous session is automatically restored by the Firebase SDK. Test that clearing all site data (including IndexedDB used by Firebase) results in a new anonymous user being created on the next visit.",
         "subtasks": []
       },
       {
@@ -210,7 +210,7 @@
     ],
     "metadata": {
       "created": "2025-01-21T05:36:00Z",
-      "updated": "2025-07-21T07:56:20.553Z",
+      "updated": "2025-08-01T13:10:16.782Z",
       "description": "Tasks for main context"
     }
   }
