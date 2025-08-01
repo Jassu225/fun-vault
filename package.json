@@ -10,10 +10,9 @@
     "lint": "next lint",
     "prepare": "husky",
     "test": "echo \"No tests yet. Use: npm run test:unit or npm run test:e2e\" && exit 0",
-    "test:unit": "jest",
+    "test:unit": "dotenv -e .env.test -- jest --detectOpenHandles",
     "test:e2e": "playwright test",
-    "emulators": "firebase emulators:start --only firestore",
-    "emulators:ui": "firebase emulators:start --only firestore --ui"
+    "emulators": "firebase emulators:start --only firestore"
   },
   "dependencies": {
     "@huggingface/inference": "^2.6.4",
@@ -21,6 +20,7 @@
     "@types/node": "^20.11.16",
     "autoprefixer": "^10.4.17",
     "firebase": "^10.14.1",
+    "firebase-admin": "^13.4.0",
     "nanoid": "^5.0.6",
     "next": "^15.4.2",
     "postcss": "^8.5.6",
@@ -46,6 +46,7 @@
     "@types/react": "^19.1.8",
     "@types/react-dom": "^19.1.6",
     "dotenv": "^17.2.0",
+    "dotenv-cli": "^10.0.0",
     "eslint": "^9.31.0",
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-react": "^7.37.5",

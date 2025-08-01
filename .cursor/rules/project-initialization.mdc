@@ -63,7 +63,6 @@ alwaysApply: true
      - Technical requirements documents
      - Existing codebase (if any)
 2. **Technical Stack Discovery**
-
    - [ ] Identify and catalog:
      - Programming language(s) and versions
      - Framework(s) and versions
@@ -549,7 +548,7 @@ Status: In Progress
 1. **Update Execution Plan**: Check off completed items in `/ai/plans/YYYYMMDD_HHMMSS_plan.md`
 2. **Run All Tests**: Ensure 100% pass rate
 3. **Update Master tasks.json**: Mark task as done in `/.taskmaster/tasks/tasks.json`
-4. **Update CHANGELOG.md**: Log in `/ai/CHANGELOG.md` with proper format:
+4. **Update CHANGELOG.md**: Log in one-line in `/ai/CHANGELOG.md` with proper format:
    ```
    [YYYY-MM-DDTHH:MM:SSZ] - Description. [email] (Task: #ID.SUB_ID)
    ```
