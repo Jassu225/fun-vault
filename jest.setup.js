@@ -1,3 +1,5 @@
+require('@testing-library/jest-dom');
+
 // Polyfill for setImmediate in test environment
 if (typeof setImmediate === 'undefined') {
   global.setImmediate = (callback, ...args) => {

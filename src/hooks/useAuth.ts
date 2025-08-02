@@ -2,7 +2,8 @@
 
 import { useState, useEffect, useCallback } from 'react';
 import { User } from 'firebase/auth';
-import { signInAnonymouslyUser, onAuthStateChange, getCurrentUser } from '@/services/firebase';
+import cookies from 'js-cookie';
+import { signInAnonymouslyUser, onAuthStateChange, getCurrentUser } from '@/services/client/firebase';
 
 interface AuthState {
   user: User | null;
@@ -41,23 +42,25 @@ export const useAuth = () => {
   }, []);
 
   useEffect(() => {
-    // Set up auth state listener
-    const unsubscribe = onAuthStateChange((user) => {
+    const updateAuthState = async (user: User | null) => {
+      if (user) {
+        cookies.set('token', await user.getIdToken());
+      } else {
+        cookies.remove('token');
+      }
       setAuthState({
         user,
         loading: false,
         error: null,
       });
-    });
+    };
+    // Set up auth state listener
+    const unsubscribe = onAuthStateChange(updateAuthState);
 
     // Check if there's already a user
     const currentUser = getCurrentUser();
     if (currentUser) {
-      setAuthState({
-        user: currentUser,
-        loading: false,
-        error: null,
-      });
+      updateAuthState(currentUser);
     }
 
     return unsubscribe;

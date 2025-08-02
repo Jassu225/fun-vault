@@ -1,14 +1,15 @@
 import { initializeApp, cert, getApps, getApp } from 'firebase-admin/app';
 import { getFirestore } from 'firebase-admin/firestore';
+import { getAuth } from 'firebase-admin/auth';
+import { cookies } from 'next/headers';
+import { UNAUTHORIZED_ERROR } from '@/app/constants/errors';
 
 const isEmulator = process.env.ENVIRONMENT === 'test';
 
 export const getFirebaseAdminApp = () => {
   if (getApps().length) {
-    console.log('Using existing app ------------------------------');
     return getApp();
   } else if (isEmulator) {
-    console.log('Initializing emulator ------------------------------');
     // Use only projectId for emulator, no credentials needed
     const projectId = process.env.FIREBASE_PROJECT_ID || 'demo-test';
     return initializeApp({ projectId });
@@ -21,7 +22,21 @@ export const getFirebaseAdminApp = () => {
 
     try {
       const decodedString = Buffer.from(serviceAccountBase64, 'base64').toString('utf-8');
-      const serviceAccount = JSON.parse(decodedString);
+
+      // Fix the JSON by replacing literal newlines in the private key with escaped newlines
+      const fixedJsonString = decodedString.replace(/"private_key":\s*"([^"]*(?:\\.[^"]*)*)"/g, (match, privateKey) => {
+        // Replace literal newlines with escaped newlines
+        const fixedPrivateKey = privateKey.replace(/\n/g, '\\n');
+        return `"private_key": "${fixedPrivateKey}"`;
+      });
+
+      const serviceAccount = JSON.parse(fixedJsonString);
+
+      // Restore the newlines in the private key for Firebase Admin
+      if (serviceAccount.private_key) {
+        serviceAccount.private_key = serviceAccount.private_key.replace(/\\n/g, '\n');
+      }
+
       return initializeApp({
         credential: cert(serviceAccount),
       });
@@ -33,4 +48,16 @@ export const getFirebaseAdminApp = () => {
   }
 };
 
+export const getAuthenticatedUser = async () => {
+  const cookieStore = await cookies();
+  const token = cookieStore.get('token')?.value;
+  if (!token) {
+    throw new Error(UNAUTHORIZED_ERROR.json.error);
+  }
+  const user = await adminAuth.verifyIdToken(token);
+  return user;
+};
+
 export const getDb = () => getFirestore(getFirebaseAdminApp());
+export const adminDb = getDb();
+export const adminAuth = getAuth(getFirebaseAdminApp());

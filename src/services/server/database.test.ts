@@ -21,7 +21,7 @@ import {
   initializeGlobalStats,
   getDatabaseStats,
 } from './database';
-import { GameCategory, GameSessionStatus, PlayerType } from '../types';
+import { GameCategory, GameSessionStatus, PlayerType } from '../../types';
 import { deleteApp } from 'firebase-admin/app';
 import { getFirebaseAdminApp } from './firebaseAdmin';
 

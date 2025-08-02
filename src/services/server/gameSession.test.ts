@@ -1,6 +1,6 @@
 import { createGameSession } from './gameSession';
-import { GameSession } from '../types/database';
-import { GameSessionStatus, PlayerType } from '../types/index';
+import { GameSession } from '../../types/database';
+import { GameSessionStatus, PlayerType } from '../../types/index';
 import { getFirebaseAdminApp } from './firebaseAdmin';
 import { deleteApp } from 'firebase-admin/app';
 

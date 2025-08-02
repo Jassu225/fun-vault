@@ -1,6 +1,6 @@
 import { renderHook, act, waitFor } from '@testing-library/react';
 import { useAuth } from './useAuth';
-import { signInAnonymouslyUser, onAuthStateChange, getCurrentUser } from '@/services/firebase';
+import { signInAnonymouslyUser, onAuthStateChange, getCurrentUser } from '@/services/client/firebase';
 
 // Mock Firebase Auth
 jest.mock('@/services/firebase', () => ({

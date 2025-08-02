@@ -1,4 +1,4 @@
-import { getDb } from '../services/firebaseAdmin';
+import { getDb } from '../services/server/firebaseAdmin';
 
 async function testFirestoreConnection() {
   try {

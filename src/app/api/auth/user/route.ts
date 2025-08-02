@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { createAnonymousUserWithAuthUid, getAnonymousUser, updateAnonymousUser } from '@/services/database';
+import { createAnonymousUserWithAuthUid, getAnonymousUser, updateAnonymousUser } from '@/services/server/database';
 
 export async function POST(request: NextRequest) {
   try {

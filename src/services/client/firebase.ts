@@ -12,13 +12,10 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase
-const app = initializeApp(firebaseConfig);
+export const app = initializeApp(firebaseConfig);
 
 // Initialize Firebase Auth
 export const auth = getAuth(app);
-
-// Export the app for potential future use
-export { app };
 
 // Authentication utilities
 export const signInAnonymouslyUser = async (): Promise<User> => {
@@ -39,4 +36,12 @@ export const onAuthStateChange = (callback: (user: User | null) => void) => {
 // Get current user
 export const getCurrentUser = (): User | null => {
   return auth.currentUser;
+};
+
+export const getCurrentUserToken = async (): Promise<string | null> => {
+  const user = getCurrentUser();
+  if (!user) {
+    return null;
+  }
+  return user.getIdToken();
 };

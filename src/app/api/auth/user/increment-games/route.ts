@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { incrementUserGamesPlayed } from '@/services/database';
+import { incrementUserGamesPlayed } from '@/services/server/database';
 
 export async function POST(request: NextRequest) {
   try {
